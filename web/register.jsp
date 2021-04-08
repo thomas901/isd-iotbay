@@ -34,7 +34,7 @@
                 
                
 		Staff Code: 
-                <input type="text" placeholder="Enter Staff code" name="staffCode" required="true"> <br>
+                <input type="text" placeholder="Enter Staff code" name="staffCode"> <br>
 	
                 Name:
                 <input type="name" placeholder="Enter a name" name="name" required="true"> <br>
@@ -51,7 +51,7 @@
                 <input type="checkbox" id="tos" name="tos" value="tos">
                 
                 <div>
-                    <input type="button" class="button color" value="Cancel" onclick=location.href="index.html>
+                    <input type="button" class="button color" value="Cancel" onclick=location.href="index.html">
                     <input type="submit" class="button" value="Sign up">
                 </div>
                 
