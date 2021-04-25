@@ -1,6 +1,14 @@
 /*
-    NOTES:
-        Missing payment types, not sure what to use 
+NOTES:
+    Line 26: 
+        - Cant make an int size of 1 decided to use SMALLINT 
+            which is a size of 2     
+    Line 46: 
+        - Made the price a bit bigger compared to the datadictionary
+        - used decimal instead of double, couldnt get double to work
+    Line 84 & 88:
+        - diff values compared to the data dictionary
+
 */
 
 CREATE TABLE Customer (
@@ -20,7 +28,9 @@ CREATE TABLE Staff(
     Password Varchar(20),
     Email Varchar(20),
     PhoneNumber Varchar(10),
-    AccountType INT(1),
+    -- Cant make an int size of 1 decided to use SMALLINT 
+    --  which is a size of 2 
+    AccountType SMALLINT, 
     PRIMARY KEY(StaffID)
 );
 
@@ -37,7 +47,9 @@ CREATE TABLE Product (
     Description Varchar(256),
     CategoryID BIGINT,
     Brand Varchar(100),
-    Price DOUBLE PRECISION(2, 2),
+    -- made the price a bit bigger compared to the datadictionary
+    -- used decimal instead of double couldnt get double to work
+    Price DECIMAL(4, 2),
     PRIMARY KEY(ProductID),
     FOREIGN KEY(CategoryID) REFERENCES Category(CategoryID)
 );
@@ -48,7 +60,7 @@ CREATE TABLE "ORDER" (
     OrderedDate DATE,
     Status Varchar(20),
     ShippedDate DATE,
-    TotalPrice DOUBLE PRECISION,
+    TotalPrice DECIMAL(4, 2),
     FullfilledBy BIGINT,
     AddressID BIGINT,
     Address Varchar(300),
@@ -69,10 +81,12 @@ CREATE TABLE OrderLineItem (
 CREATE TABLE PaymentMethod (
     PaymentMethodID BIGINT,
     CustomerID BIGINT,
-    CardNumber VAR(100),
+    -- diff from the data dictionary
+    CardNumber FLOAT(16),
     CardExpiryYear SMALLINT,
     CardExpiryMonth SMALLINT,
-    CVC INT(3),
+    -- diff from the data dictionary
+    CVC FLOAT(3),
     PRIMARY KEY(PaymentMethodID),
     FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)
 );
@@ -92,7 +106,7 @@ CREATE TABLE Invoice (
     CustomerID BIGINT,
     OrderID BIGINT,
     PaymentID BIGINT,
-    -- Amount
+    Amount DECIMAL(4, 2),
     DateSent Date,
     Paid Boolean,
     DatePaid Date,
