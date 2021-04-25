@@ -1,12 +1,10 @@
 /*
-    NOTE:
+    NOTES:
         Missing payment types, not sure what to use 
-
-
 */
 
 CREATE TABLE Customer (
-    CustomerID Int,
+    CustomerID BIGINT,
     Name Varchar(10),
     Password varchar(20),
     PhoneNumber varchar(10),
@@ -17,41 +15,42 @@ CREATE TABLE Customer (
 );
 
 CREATE TABLE Staff(
-    StaffID Int,
+    StaffID BIGINT,
     Name Varchar(10),
     Password Varchar(20),
     Email Varchar(20),
     PhoneNumber Varchar(10),
-    AccountType Int,
+    AccountType INT(1),
     PRIMARY KEY(StaffID)
 );
 
 CREATE TABLE Category (
-    CategoryID int,
+    CategoryID BIGINT,
     Name Varchar(100),
     PRIMARY KEY(CategoryID)
 );
 
 CREATE TABLE Product (
-    ProductID INT,
+    ProductID BIGINT,
     Name Varchar(16),
-    Stock Int,
+    Stock INT,
     Description Varchar(256),
-    CategoryID Int,
+    CategoryID BIGINT,
     Brand Varchar(100),
-    -- Price Double,
+    Price DOUBLE PRECISION(2, 2),
     PRIMARY KEY(ProductID),
     FOREIGN KEY(CategoryID) REFERENCES Category(CategoryID)
 );
+
 CREATE TABLE "ORDER" (
-    OrderID INT,
-    CustomerID INT,
+    OrderID BIGINT,
+    CustomerID BIGINT,
     OrderedDate DATE,
     Status Varchar(20),
     ShippedDate DATE,
-    --TotalPrice Double,
-    FullfilledBy INT,
-    AddressID INT,
+    TotalPrice DOUBLE PRECISION,
+    FullfilledBy BIGINT,
+    AddressID BIGINT,
     Address Varchar(300),
     PRIMARY KEY(OrderID),
     FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID),
@@ -59,40 +58,40 @@ CREATE TABLE "ORDER" (
 );
 
 CREATE TABLE OrderLineItem (
-    OrderLineID Int,
-    OrderID Int,
-    ProductID Int,
-    Quantity Int(4),
+    OrderLineID BIGINT,
+    OrderID BIGINT,
+    ProductID BIGINT,
+    Quantity INT,
     PRIMARY KEY(OrderLineID),
     FOREIGN KEY(OrderID) REFERENCES "ORDER"(OrderID)
 );
 
 CREATE TABLE PaymentMethod (
-    PaymentMethodID Int,
-    CustomerID Int,
-    CardNumber Int,
-    CardExpiryYear Int,
-    CardExpiryMonth Int,
-    CVC INT,
+    PaymentMethodID BIGINT,
+    CustomerID BIGINT,
+    CardNumber VAR(100),
+    CardExpiryYear SMALLINT,
+    CardExpiryMonth SMALLINT,
+    CVC INT(3),
     PRIMARY KEY(PaymentMethodID),
     FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)
 );
 
 CREATE TABLE CartLineItem (
-    CartLineItemID Int,
-    CustomerID int,
-    ProductID int,
-    Quantity int,
+    CartLineItemID BIGINT,
+    CustomerID BIGINT,
+    ProductID BIGINT,
+    Quantity INT,
     PRIMARY KEY(CartLineItemID),
     FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID),
     FOREIGN KEY(ProductID) REFERENCES Product(ProductID)
 );
 
 CREATE TABLE Invoice (
-    InvoiceID Int,
-    CustomerID Int,
-    OrderID Int,
-    PaymentID int,
+    InvoiceID BIGINT,
+    CustomerID BIGINT,
+    OrderID BIGINT,
+    PaymentID BIGINT,
     -- Amount
     DateSent Date,
     Paid Boolean,
@@ -104,8 +103,8 @@ CREATE TABLE Invoice (
 );
 
 CREATE TABLE Address (
-    AddressID int,
-    CustomerID int,
+    AddressID BIGINT,
+    CustomerID BIGINT,
     AddressLine1 Varchar(150),
     AddressLine2 Varchar(150),
     City Varchar(40),
