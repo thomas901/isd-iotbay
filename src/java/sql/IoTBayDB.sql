@@ -63,9 +63,13 @@ CREATE TABLE "ORDER" (
     FullfilledBy BIGINT,
     AddressID BIGINT,
     Address Varchar(300),
+    PaymentID BIGINT,
+    Paid Boolean,
+    DatePaid Date,
     PRIMARY KEY(OrderID),
     FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID),
-    FOREIGN KEY(FullfilledBy) REFERENCES Staff(StaffID)
+    FOREIGN KEY(FullfilledBy) REFERENCES Staff(StaffID),
+    FOREIGN KEY(PaymentID) REFERENCES PaymentMethod(PaymentMethodID)
 );
 
 CREATE TABLE OrderLineItem (
@@ -100,21 +104,6 @@ CREATE TABLE CartLineItem (
     FOREIGN KEY(ProductID) REFERENCES Product(ProductID)
 );
 
-CREATE TABLE Invoice (
-    InvoiceID BIGINT,
-    CustomerID BIGINT,
-    OrderID BIGINT,
-    PaymentID BIGINT,
-    Amount DECIMAL(4, 2),
-    DateSent Date,
-    Paid Boolean,
-    DatePaid Date,
-    PRIMARY KEY(InvoiceID),
-    FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID),
-    FOREIGN KEY(OrderID) REFERENCES "ORDER"(OrderID), 
-    FOREIGN KEY(PaymentID) REFERENCES PaymentMethod(PaymentMethodID)
-);
-
 CREATE TABLE Address (
     AddressID BIGINT,
     CustomerID BIGINT,
@@ -125,5 +114,14 @@ CREATE TABLE Address (
     PostalCode Varchar(6),
     Country Varchar(50),
     PRIMARY KEY(AddressID),
+    FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)
+);
+
+CREATE TABLE AccessLog (
+    AccessLogID BIGINT,
+    CustomerID BIGINT,
+    LoginTime TIMESTAMP,
+    LogoutTime TIMESTAMP,
+    PRIMARY KEY(AccessLogID),
     FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)
 );
