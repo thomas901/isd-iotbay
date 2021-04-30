@@ -1,5 +1,5 @@
-<%@page import="uts.isd.User"%>
-<%@page import="uts.isd.UserList"%>
+<%@page import="uts.isd.model.User"%>
+<%@page import="uts.isd.model.UserList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <% UserList userList = (UserList)application.getAttribute("userList");
