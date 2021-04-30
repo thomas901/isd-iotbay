@@ -5,5 +5,5 @@
 !/.gitignore
 
 # Do not ignore
-!/src/java
-!/web
+!/src/java/
+!/web/
