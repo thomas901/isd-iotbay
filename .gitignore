@@ -4,6 +4,10 @@
 # Do not ignore gitignore 
 !/.gitignore
 
-# Do not ignore
-!/src/java/
+# Keep web
 !/web/
+
+# Keep java too (but not other src)
+!/src/
+/src/*
+!src/java/
