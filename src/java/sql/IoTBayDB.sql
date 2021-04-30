@@ -12,10 +12,10 @@ NOTES:
 
 CREATE TABLE Customer (
     CustomerID BIGINT,
-    Name Varchar(10), -- this value seems too small might need to change it
+    Name Varchar(50), -- this value seems too small might need to change it
     Password varchar(20),
-    PhoneNumber varchar(10),
-    Email varchar(20),
+    PhoneNumber varchar(20),
+    Email varchar(100),
     Activated Boolean,
     DateOfBirth Date,
     PRIMARY KEY(CustomerID)
@@ -41,14 +41,14 @@ CREATE TABLE Category (
 
 CREATE TABLE Product (
     ProductID BIGINT,
-    Name Varchar(16),
+    Name Varchar(100),
     Stock INT,
     Description Varchar(256),
     CategoryID BIGINT,
     Brand Varchar(100),
     -- made the price a bit bigger compared to the datadictionary
     -- used decimal instead of double couldnt get double to work
-    Price DECIMAL(4, 2),
+    Price DECIMAL(10, 2),
     PRIMARY KEY(ProductID),
     FOREIGN KEY(CategoryID) REFERENCES Category(CategoryID)
 );
