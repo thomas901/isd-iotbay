@@ -13,7 +13,7 @@ NOTES:
 
 CREATE TABLE Customer (
     CustomerID BIGINT,
-    Name Varchar(10),
+    Name Varchar(10), -- this value seems too small might need to change it
     Password varchar(20),
     PhoneNumber varchar(10),
     Email varchar(20),
