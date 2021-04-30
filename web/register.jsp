@@ -11,7 +11,7 @@ if (temp == null) {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Registration Page </title>
-        <link rel="stylesheet" href="register.css">
+        <link rel="stylesheet" href="css/register.css">
     </head>
     
     <body>

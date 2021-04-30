@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08/04/2021, 1:19:43 PM
+    Author     : Minty
+*/
+
+.header {
+	text-align: center;	
+}
+
+.error {
+    color: #f95f5f;
+    text-align: center;
+}
+
+body {
+
+	padding-top: 80px;
+	background: #5f6366;
+	font-family:"Open Sans";
+	margin: 0 auto;
+	color: white;
+
+	background-image: url("../img/b1.jpg");
+}
+
+.container {
+        background: #424160;
+	text-decoration:none;
+        border-radius: 20px;
+	padding: 16px;
+	display: flex;
+	flex-flow: column wrap;
+        justify-content: space-between;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+}
+
+.button {
+	display:inline-block;
+	vertical-align:middle;
+	overflow:hidden;
+	padding: 10px 10px;
+	margin:20px;
+	text-align:center;
+	font-family:"Open Sans";
+	font-size: 1.1rem;
+	color: white;
+	white-space:nowrap;
+	background-color:#5c74c2;
+	cursor:pointer;
+	border-radius: 20px;
+	border: none;
+	width: 8em; 
+	height: 3em;
+}
+.button:hover:not(.active) {
+	filter: brightness(97%);
+	border-radius: 20px;
+
+}
+.button-color {
+        background-color: #fac3c6;
+}
+
+input[type=text], input[type=password] ,input[type=name],input[type=email],input[type=date], input[type=tel]{
+        padding: 10px;
+        border: none;
+        background: #f1f1f1;
+        border-radius: 20px;
+}

@@ -7,7 +7,7 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, intial-scale=1.0">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
-            <link rel="stylesheet" href="index.css">
+            <link rel="stylesheet" href="css/index.css">
     </head>
 	
     <body>
