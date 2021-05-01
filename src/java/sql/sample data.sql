@@ -1,24 +1,24 @@
 INSERT INTO Customer (CustomerID, Name, Password, PhoneNumber, Email, Activated, DateOfBirth) VALUES
 (756,'Brianna Warren','nulla.','(09) 7842 1323','briannawarren@justo.edu','False','09/08/1998'),
-(376,'Kaitlin Patel','elit,','(05) 7402 6028','kaitlin.patel@convallisconvallisdolor.edu','True','02/08/1984'),
-(797,'Kendall Roman','luctus','(02) 7933 5071','kendallroman1@rhoncusNullamvelit.ca','True','12/04/1993'),
+(376,'Kaitlin Patel','elit,','(05) 7402 6028','kaitlin.patel@convallisconvallisdolor.edu','TRUE','02/08/1984'),
+(797,'Kendall Roman','luctus','(02) 7933 5071','kendallroman1@rhoncusNullamvelit.ca','TRUE','12/04/1993'),
 (262,'Madaline Cantrell','Donec','(05) 7549 0202','madaline.c.cantrell@molestie.edu','False','06/03/1996'),
 (435,'Elliott Hampton','odio.','(09) 1393 8890','elliotthampton@lectus.org','False','10/07/1997'),
 (508,'Roth Jefferson','Phasellus','(02) 6625 0672','roth123@ullamcorper.com','False','11/05/2000'),
 (972,'Travis Munoz','Sed','(04) 9891 7674','munoz465@fermentum.edu','False','03/10/1985'),
 (187,'Lacy Patrick','Nullam','(01) 8195 3027','lacy.patrick@idsapienCras.ca','False','12/07/1986'),
 (737,'Olympia Calderon','neque','(02) 0472 1883','olympia.c@dignissimpharetra.edu','False','03/10/1983'),
-(798,'Scarlett Ramsey','risus.','(04) 8151 2419','s.ramsey12@euismodurna.edu','True','05/02/1989'),
-(286,'Tatyana Moon','lacinia','(04) 9967 2427','tatyama.a.m@lectus.com','True','02/04/1999'),
-(870,'Preston Mercer','nibh','(07) 1698 2734','preston@fringilla.org','True','12/12/1986'),
+(798,'Scarlett Ramsey','risus.','(04) 8151 2419','s.ramsey12@euismodurna.edu','TRUE','05/02/1989'),
+(286,'Tatyana Moon','lacinia','(04) 9967 2427','tatyama.a.m@lectus.com','TRUE','02/04/1999'),
+(870,'Preston Mercer','nibh','(07) 1698 2734','preston@fringilla.org','TRUE','12/12/1986'),
 (625,'Kieran Bentley','Etiam','(07) 6232 6730','bentleykieran@Phasellusvitaemauris.net','False','12/04/1995'),
-(584,'Autumn Luna','Cras','(07) 1650 1401','autumn.luna@congueaaliquet.edu','True','04/10/1997'),
-(695,'Victor Farley','eget','(02) 7598 8137','vic12@lacinia.net','True','09/11/1996'),
+(584,'Autumn Luna','Cras','(07) 1650 1401','autumn.luna@congueaaliquet.edu','TRUE','04/10/1997'),
+(695,'Victor Farley','eget','(02) 7598 8137','vic12@lacinia.net','TRUE','09/11/1996'),
 (184,'Martena Franklin','penatibus','(04) 6809 7696','martena.franklin@morbisitamet.net','False','03/04/1993'),
-(136,'Fitzgerald Hobbs','odio.','(04) 3916 6598','hobbs.f@fuscemi.org','True','04/02/1990'),
+(136,'Fitzgerald Hobbs','odio.','(04) 3916 6598','hobbs.f@fuscemi.org','TRUE','04/02/1990'),
 (401,'Marny Wooten','pulvinar','(03) 7509 1499','marny.s.wooten3@ipsum.com','False','11/03/1989'),
-(837,'Nathaniel Woodward','Sed','(03) 5644 3264','nathaniel.woodward@magnaCras.net','True','06/10/1998'),
-(337,'Ima Stanley','feugiat.','(08) 5943 0330','ima123@ligula.co.uk','True','08/11/1995');
+(837,'Nathaniel Woodward','Sed','(03) 5644 3264','nathaniel.woodward@magnaCras.net','TRUE','06/10/1998'),
+(337,'Ima Stanley','feugiat.','(08) 5943 0330','ima123@ligula.co.uk','TRUE','08/11/1995');
 
 INSERT INTO Staff (StaffID, Name, Password, Email, PhoneNumber, AccountType) VALUES
 (624,'Blossom Navarro','ipsum','feugiat.metus@magnaPraesentinterdum.edu','(06) 2624 7462',1),
@@ -86,29 +86,59 @@ INSERT INTO Product (ProductID, Name, Stock, Description, CategoryID, Brand, Pri
 (118, '5V 2A Transformer', 66, '5V 2A Transformer from 240V', 117, 'IoTEssentials', 58.00),
 (119, '30m Electrical Tape (5mm thick)', 198, '30m electrical tape with thickness of 5mm', 118, 'IoTEssentials', 20.00);
 
-INSERT INTO "ORDER" (OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FulfilledBy, AddressID, Address, PaymentID, Paid, DatePaid) VALUES
-(100, 756, '01/01/2020', 'Fulfilled', '01/05/20', 56.00, 624, ###, '', ###, 'True', '01/01/2020'),
-(101, , '', '', '', , , , '', , '', ''),
-(102, , '', '', '', , , , '', , '', ''),
-(103, , '', '', '', , , , '', , '', ''),
-(104, , '', '', '', , , , '', , '', ''),
-(105, , '', '', '', , , , '', , '', ''),
-(106, , '', '', '', , , , '', , '', ''),
-(107, , '', '', '', , , , '', , '', ''),
-(108, , '', '', '', , , , '', , '', ''),
-(109, , '', '', '', , , , '', , '', ''),
-(110, , '', '', '', , , , '', , '', ''),
-(111, , '', '', '', , , , '', , '', ''),
-(112, , '', '', '', , , , '', , '', ''),
-(113, , '', '', '', , , , '', , '', ''),
-(114, , '', '', '', , , , '', , '', ''),
-(115, , '', '', '', , , , '', , '', ''),
-(116, , '', '', '', , , , '', , '', ''),
-(117, , '', '', '', , , , '', , '', ''),
-(118, , '', '', '', , , , '', , '', ''),
-(119, , '', '', '', , , , '', , '', '');
+INSERT INTO "ORDER" (OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FullfilledBy, AddressID, Address, PaymentID, Paid, DatePaid) VALUES
+(100, 756, '01/01/2020', 'Fulfilled', '01/05/2020', 56.00, 624, 100, null, 100, 'TRUE', '01/01/2020'),
+(101, 756, '02/01/2020', 'Fulfilled', '02/05/2020', 136.50, 856, 100, null, 101, 'TRUE', '02/01/2020'),
+(102, 756, '03/01/2020', 'Cancelled', null, 116.00, null, null, null, null, 'FALSE', null),
+(103, 286, '01/15/2020', 'Fulfilled', '01/16/2020', 560.00, 956, 110, null, 119, 'TRUE', '01/15/2020'),
+(104, 286, '02/15/2020', 'Fulfilled', '02/19/2020', 14.00, 125, null, '111 Road Street NSW 2029 Sydney Australia', 119, 'TRUE', '02/20/2020'),
+(105, 286, '03/15/2020', 'Fulfilled', '03/16/2020', 164.50, 115, 110, null, 119, 'TRUE', '03/20/2020'),
+(106, 286, '04/15/2020', 'Cancelled', null, 136.85, null, null, null, null, 'FALSE', null),
+(107, 337, '01/10/2020', 'Fulfilled', '01/16/2020', 196.00, 447, 119, null, 118, 'TRUE', '01/11/2020'),
+(108, 337, '02/10/2020', 'Fulfilled', '02/11/2020', 164.00, 881, 119, null, 118, 'TRUE', '02/10/2020'),
+(109, 337, '03/10/2020', 'Fulfilled', '03/19/2020', 16.00, 125, 119, null, 118, 'TRUE', '03/11/2020'),
+(110, 337, '04/10/2020', 'Fulfilled', '04/30/2020', 115.75, 433, 119, null, 118, 'TRUE', '04/15/2020'),
+(111, 337, '05/10/2020', 'Fulfilled', '05/16/2020', 166.95, 433, 119, null, 118, 'TRUE', '05/10/2020'),
+(112, 136, '01/25/2020', 'Fulfilled', '02/02/2020', 46.00, 786, 116, null, 119, 'TRUE', '01/25/2020'),
+(113, 136, '02/25/2020', 'Fulfilled', '03/02/2020', 99.00, 956, 116, null, 119, 'TRUE', '02/25/2020'),
+(114, 136, '01/25/2020', 'Cancelled', null, 46.00, null, null, null, null, 'FALSE', null),
+(115, 136, '01/25/2020', 'Fulfilled', '02/02/2020', 46.00, 786, 116, null, 119, 'TRUE', '01/25/2020'),
+(116, 401, '06/01/2020', 'Fulfilled', '06/11/2020', 169.00, 632, 117, null, 117, 'TRUE', '06/02/2020'),
+(117, 401, '06/10/2020', 'Fulfilled', '06/19/2020', 33.65, 115, 117, null, 117, 'TRUE', '06/10/2020'),
+(118, 401, '07/01/2020', 'Fulfilled', '07/10/2020', 164.00, 433, 117, null, 117, 'TRUE', '07/06/2020'),
+(119, 401, '07/19/2020', 'Fulfilled', '07/30/2020', 147.50, 119, 117, null, 117, 'TRUE', '07/21/2020');
 
---orderlineitem
+INSERT INTO OrderLineItem (OrderLineID, OrderID, ProductID, Quantity) VALUES
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , ),
+(, , , );
 
 INSERT INTO PaymentMethod (PaymentMethodID, CustomerID, CardNumber, CardExpiryYear, CardExpiryMonth, CVC) VALUES
 (100, 756, 5621463535262158, 2022, 01, 356),
@@ -130,7 +160,7 @@ INSERT INTO PaymentMethod (PaymentMethodID, CustomerID, CardNumber, CardExpiryYe
 (116, 625, 3467946432565638, 2021, 10, 761),
 (117, 401, 6595946464665377, 2027, 10, 186),
 (118, 337, 3164997282213278, 2023, 12, 346),
-(119, 972, 6494643527631645, 2021, 04, 658);
+(119, 286, 6494643527631645, 2021, 04, 658);
 
 --cartlineitem
 
