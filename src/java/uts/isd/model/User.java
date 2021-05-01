@@ -1,6 +1,6 @@
 package uts.isd.model;
 import java.io.Serializable;
-//a change
+
 public class User implements Serializable {
     private String email;
     private String password;
