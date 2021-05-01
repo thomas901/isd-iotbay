@@ -23,7 +23,7 @@ CREATE TABLE Customer (
 
 CREATE TABLE Staff(
     StaffID BIGINT,
-    Name Varchar(10),
+    Name Varchar(50), -- changed varchar from 10 to 50
     Password Varchar(20),
     Email Varchar(20),
     PhoneNumber Varchar(10),
