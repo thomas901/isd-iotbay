@@ -59,7 +59,7 @@ CREATE TABLE "ORDER" (
     OrderedDate DATE,
     Status Varchar(20),
     ShippedDate DATE,
-    TotalPrice DECIMAL(4, 2),
+    TotalPrice DECIMAL(10, 2), --changed to (10,2); not really sure what numbers are but this allows much bigger prices
     FullfilledBy BIGINT,
     AddressID BIGINT,
     Address Varchar(300),

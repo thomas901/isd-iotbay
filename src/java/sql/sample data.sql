@@ -86,5 +86,74 @@ INSERT INTO Product (ProductID, Name, Stock, Description, CategoryID, Brand, Pri
 (118, '5V 2A Transformer', 66, '5V 2A Transformer from 240V', 117, 'IoTEssentials', 58.00),
 (119, '30m Electrical Tape (5mm thick)', 198, '30m electrical tape with thickness of 5mm', 118, 'IoTEssentials', 20.00);
 
---INSERT INTO "ORDER" (OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FilfilledBy, AddressID, Address, PaymentID, Paid, DatePaid) VALUES
---();
+INSERT INTO "ORDER" (OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FulfilledBy, AddressID, Address, PaymentID, Paid, DatePaid) VALUES
+(100, 756, '01/01/2020', 'Fulfilled', '01/05/20', 56.00, 624, ###, '', ###, 'True', '01/01/2020'),
+(101, , '', '', '', , , , '', , '', ''),
+(102, , '', '', '', , , , '', , '', ''),
+(103, , '', '', '', , , , '', , '', ''),
+(104, , '', '', '', , , , '', , '', ''),
+(105, , '', '', '', , , , '', , '', ''),
+(106, , '', '', '', , , , '', , '', ''),
+(107, , '', '', '', , , , '', , '', ''),
+(108, , '', '', '', , , , '', , '', ''),
+(109, , '', '', '', , , , '', , '', ''),
+(110, , '', '', '', , , , '', , '', ''),
+(111, , '', '', '', , , , '', , '', ''),
+(112, , '', '', '', , , , '', , '', ''),
+(113, , '', '', '', , , , '', , '', ''),
+(114, , '', '', '', , , , '', , '', ''),
+(115, , '', '', '', , , , '', , '', ''),
+(116, , '', '', '', , , , '', , '', ''),
+(117, , '', '', '', , , , '', , '', ''),
+(118, , '', '', '', , , , '', , '', ''),
+(119, , '', '', '', , , , '', , '', '');
+
+--orderlineitem
+
+INSERT INTO PaymentMethod (PaymentMethodID, CustomerID, CardNumber, CardExpiryYear, CardExpiryMonth, CVC) VALUES
+(100, 756, 5621463535262158, 2022, 01, 356),
+(101, 756, 7954621458536254, 2025, 03, 156),
+(102, 376, 3564918457316458, 2024, 11, 124),
+(103, 797, 4365134265925465, 2021, 10, 125),
+(104, 435, 6565337326167778, 2021, 06, 369),
+(105, 435, 5654643231645647, 2026, 05, 989),
+(106, 508, 5649161346465584, 2024, 07, 135),
+(107, 972, 5692818435356564, 2023, 12, 468),
+(108, 187, 2316497672616558, 2023, 06, 124),
+(109, 737, 2326169584673856, 2023, 06, 168),
+(110, 401, 5649731646465727, 2021, 05, 267),
+(111, 136, 4656594928231645, 2026, 08, 154),
+(112, 584, 4659594816434687, 2025, 02, 698),
+(113, 337, 5356462928643568, 2024, 01, 247),
+(114, 870, 5659494323264584, 2022, 06, 264),
+(115, 870, 3146499134345688, 2023, 09, 398),
+(116, 625, 3467946432565638, 2021, 10, 761),
+(117, 401, 6595946464665377, 2027, 10, 186),
+(118, 337, 3164997282213278, 2023, 12, 346),
+(119, 972, 6494643527631645, 2021, 04, 658);
+
+--cartlineitem
+
+INSERT INTO Address (AddressID, CustomerID, AddressLine1, AddressLine2, City, State, PostalCode, Country) VALUES
+(100, 756, '1 Street Road', 'Floor 3', 'Sydney', 'NSW', '4653', 'Australia'),
+(101, 376, '56 Road Avenue', 'Level 4a', 'Sydney', 'NSW', '6465', 'Australia'),
+(102, 797, '98 Street Lane', 'Office 45', 'Wollongong', 'NSW', '1354', 'Australia'),
+(103, 262, '3 Road Road', 'NSW 1568', 'Wagga Wagga', 'NSW', '1568', 'Australia'),
+(104, 435, '8 Avenue Street', 'NSW', 'Sydney', 'NSW', '1568', 'Australia'),
+(105, 508, '98 Street Street', '9283', 'Sydney', 'NSW', '9283', 'Australia'),
+(106, 972, '77 Road Road', 'Sydney', 'Sydney', 'NSW', '1356', 'Australia'),
+(107, 187, '69 Lane Road', 'Building 3a', 'Newcastle', 'NSW', '6845', 'Australia'),
+(108, 737, '33 Avenue Lane', 'Floor 2', 'Central Coast', 'NSW', '9898', 'Australia'),
+(109, 798, '2 Street Road', 'Floor 2', 'Sydney', 'NSW', '1369', 'Australia'),
+(110, 286, '4 Avenue Avenue', 'Buidling 2', 'Sydney', 'NSW', '4463', 'Australia'),
+(111, 870, '8 Lane Lane', 'Office 2b', 'Sydney', 'NSW', '6933', 'Australia'),
+(112, 625, '19 Road Avenue', 'NSW 9022', 'Newcastle', 'NSW', '9022', 'Australia'),
+(113, 584, '397 Main Road', 'Building 17', 'Sydney', 'NSW', '4563', 'Australia'),
+(114, 695, '9 Avenue Street', 'NSW', 'Sydney', 'NSW', '1568', 'Australia'),
+(115, 187, '13 Main Street', 'Floor 1', 'Central Coast', 'NSW', '4646', 'Australia'),
+(116, 136, '59 Main Avenue', '2901', 'Sydney', 'NSW', '2901', 'Australia'),
+(117, 401, '688 Road Street', '1778 NSW', 'Sydney', 'NSW', '1778', 'Australia'),
+(118, 837, '34 Lane Road', 'Level 4 cell 17', 'Coffs Harbour', 'NSW', '6764', 'Australia'),
+(119, 337, '468 Road Road', 'Sydney', 'Sydney', 'NSW', '1356', 'Australia');
+
+--access
