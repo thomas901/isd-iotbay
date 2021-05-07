@@ -4,6 +4,7 @@ import uts.isd.model.User;
 import java.sql.*;
 import java.util.LinkedList;
 import uts.isd.model.Order;
+import uts.isd.model.OrderedItem;
 /* 
 * DBManager is the primary DAO class to interact with the database. 
 * Complete the existing methods of this classes to perform CRUD operations with the db.
@@ -43,5 +44,17 @@ public class DBManager {
             orders.add(new Order(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getDate(5), rs.getDouble(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10), rs.getBoolean(11), rs.getDate(12)));
         }
         return orders;
+    }
+    
+    public LinkedList<OrderedItem> getPastOrder(int orderID) throws SQLException {
+        //explicitly define order to use constructor in same order
+        String query = "select name, quantity from orderlineitem inner join product on product.productid = orderlineitem.productid where orderid = " + orderID;
+        ResultSet rs = st.executeQuery(query);
+        LinkedList<OrderedItem> order = new LinkedList<>();
+        
+        while (rs.next()) {
+            order.add(new OrderedItem(rs.getString(1), rs.getInt(2)));
+        }
+        return order;
     }
 }
