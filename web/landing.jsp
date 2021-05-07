@@ -28,7 +28,9 @@ if (userList == null) {
         <div class="container">
             <input type="button" class="button" value="Login" onclick=location.href="login.jsp">
             <input type="button" class="button" value="Register" onclick=location.href="register.jsp">
+            <!-- for testing -->
+            <a href="account.jsp">Account</a>
         </div>
     </body> 
-    
+    <jsp:include page="/ConnServlet" flush="true"/>
 </html>

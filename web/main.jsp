@@ -26,7 +26,7 @@
         <div class="container">
             <% if (user.getAccountType().equals("customer")) { %>
                 <input type="button" class="button" value="Shop">
-                <input type="button" class="button" value="Account">
+                <input type="button" class="button" value="Account" onclick=location.href="account.jsp?test=1">
                 <input type="button" class="button" value="Orders">
             <% } else { %>
                 <input type="button" class="button" value="Products">
