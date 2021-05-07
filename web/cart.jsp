@@ -32,6 +32,7 @@
                 </tr>
             <% }  %>
             </table>
+            <a href="CheckoutController">Checkout cart</a>
         <% } %>
     </body>
 </html>

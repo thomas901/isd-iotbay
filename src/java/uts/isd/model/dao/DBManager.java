@@ -3,6 +3,8 @@ package uts.isd.model.dao;
 import uts.isd.model.User;
 import java.sql.*;
 import java.util.LinkedList;
+import uts.isd.model.Cart;
+import uts.isd.model.CartItem;
 import uts.isd.model.Order;
 import uts.isd.model.OrderedItem;
 import uts.isd.model.Product;
@@ -92,5 +94,57 @@ public class DBManager {
             product = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getDouble(7));
         }
         return product;
+    }
+    
+    public int nextOrderID() throws SQLException {
+        String query = "select max(orderID) from \"ORDER\"";
+        ResultSet rs = st.executeQuery(query);
+        int maxID = 0;
+        while (rs.next()) { //can only have 1 row
+            maxID = rs.getInt(1);
+        }
+        return maxID + 1;
+    }
+    
+    public double priceCart(Cart cart) throws SQLException {
+        double totalPrice = 0;
+        double price;
+        String query;
+        for (CartItem item : cart.getCart()) {
+            price = 0;
+            query = "select price from product where productid = " + item.getProductID();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) { //can only have 1 row
+                price = rs.getDouble(1);
+            }
+            totalPrice += price * item.getQuantity();
+        }
+        return totalPrice;
+    }
+    
+    public void createOrder(int orderID, int customerID, String status, double totalPrice, boolean paid) throws SQLException  {
+        //feature 3 is not yet concerned with payment and addresses; address by features 4 and 5
+        String query = "insert into \"ORDER\" (OrderID, CustomerID, Status, TotalPrice, Paid) VALUES (" + orderID + ", " + customerID + ", '" + status + "', " + totalPrice + ", '" + paid + "')";
+        executeUpdate(query);
+    }
+    
+    private int nextOrderLineID() throws SQLException {
+        String query = "select max(OrderLineID) from OrderLineItem";
+        ResultSet rs = st.executeQuery(query);
+        int maxID = 0;
+        while (rs.next()) { //can only have 1 row
+            maxID = rs.getInt(1);
+        }
+        return maxID + 1;
+    }
+    
+    public void createOrderLines(Cart cart, int orderID) throws SQLException {
+        int nextID = nextOrderLineID();
+        String query;
+        for (CartItem item : cart.getCart()) {
+            query = "insert into orderlineitem (orderlineid, orderid, productid, quantity) values (" + nextID + ", " + orderID + ", " + item.getProductID() + ", " + item.getQuantity() + ")";
+            executeUpdate(query);
+            nextID++;
+        }
     }
 }

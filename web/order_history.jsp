@@ -15,6 +15,8 @@
     </head>
     <body>
         <h1>Order history for <%=customer.getName()%>:</h1>
+        <a href="account.jsp">Account</a><br>
+        <a class="button" href="ShopController">Shop</a>
         <form action="OrderHistoryController" method="post">
             <div>
                 <div>
