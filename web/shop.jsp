@@ -13,7 +13,8 @@
     </head>
     <body>
         <h1>Welcome to the shop</h1>
-        <a href="account.jsp">Account</a>
+        <a href="account.jsp">Account</a><br>
+        <a href="cart.jsp">Cart</a>
         <% if (allProducts == null) { %>
             <h2>An error occurred trying to retrieve products</h2>
         <% } else if (allProducts.size() == 0) { %>

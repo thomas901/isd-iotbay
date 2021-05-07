@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import uts.isd.model.Cart;
 import uts.isd.model.Product;
 import uts.isd.model.dao.DBManager;
 
@@ -22,6 +23,12 @@ public class ShopController extends HttpServlet {
 
         //retrieve the manager instance from session
         DBManager manager = (DBManager)session.getAttribute("manager");
+        
+        Cart cart = (Cart)session.getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
         
         LinkedList<Product> allProducts;
         try {

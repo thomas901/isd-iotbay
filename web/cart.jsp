@@ -1,13 +1,11 @@
-<%@page import="uts.isd.model.OrderedItem"%>
-<%@page import="uts.isd.model.Order"%>
+<%@page import="uts.isd.model.CartItem"%>
+<%@page import="uts.isd.model.Cart"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="uts.isd.model.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <% 
-    //for testing
-    Customer customer = (Customer)session.getAttribute("customer");
-    LinkedList<OrderedItem> order = (LinkedList<OrderedItem>)session.getAttribute("pastOrder");
+    Cart cart = (Cart)session.getAttribute("cart");
 %>
 <html>
     <head>
@@ -15,12 +13,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Order <%=request.getParameter("orderID")%></h1>
-        <a class="button" href="OrderHistoryController">Order History</a><br>
-        <% if (order == null) { %>
-            <h2>An error occurred trying to retrieve this order</h2>
-        <% } else if (order.size() == 0) { %>
-            <h2>This order contained no items</h2>
+        <h1>Your cart</h1>
+        <a href="account.jsp">Account</a><br>
+        <a class="button" href="ShopController">Shop</a>
+        <% if (cart == null || cart.isEmpty()) { %>
+            <h2>Your cart is empty</h2>
         <% } else { %>
             <table border="1" cellspacing="3" cellpadding="3">
                 <tr>
@@ -28,7 +25,7 @@
                     <th>Quantity</th>
                     
                 </tr>
-            <% for (OrderedItem item : order) { %>
+            <% for (CartItem item : cart.getCart()) { %>
                 <tr>
                     <td><%=item.getName()%></td>
                     <td><%=item.getQuantity()%></td>

@@ -1,9 +1,11 @@
+<%@page import="uts.isd.model.Cart"%>
 <%@page import="uts.isd.model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
     Product product = (Product)session.getAttribute("product");
     String quantityError = (String)session.getAttribute("quantityError");
+    Cart cart = (Cart)session.getAttribute("cart");
 %>
 <html>
     <head>
@@ -19,6 +21,9 @@
         <p><%=product.getName()%></p>
         <p><%=product.getDescription()%></p>
         <p>Quantity in stock: <%=product.getStock()%></p>
+        <% if (cart.quantityOf(product.getProductID()) > 0) { %>
+            <p>Quantity in cart: <%=cart.quantityOf(product.getProductID())%></p>
+        <% } %>
         <form action="AddToCartController" method="post">
             <button type="button" onclick="decreaseQuantity()">-</button>
             <input id="quantity" type="number" name="quantity" value=0>
@@ -37,7 +42,7 @@
             
             function increaseQuantity() {
                 var value = parseInt(document.getElementById("quantity").value);
-                if (value < <%=product.getStock()%>) {
+                if (value < <%=product.getStock()-cart.quantityOf(product.getProductID())%>) {
                     value += 1;
                 }
                 document.getElementById("quantity").value = value;  

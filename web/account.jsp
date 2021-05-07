@@ -14,7 +14,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <p><%=(String)request.getParameter("test")%></p>
         <a class="button" href="OrderHistoryController">Order History</a><br>
         <a class="button" href="ShopController">Back to shop</a>
     </body>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import uts.isd.model.Cart;
 import uts.isd.model.Product;
 import uts.isd.model.dao.DBManager;
 
@@ -24,16 +25,21 @@ public class AddToCartController extends HttpServlet {
         DBManager manager = (DBManager)session.getAttribute("manager");
         
         Product product = (Product)session.getAttribute("product");
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int quantity = Integer.parseInt(request.getParameter("quantity")); //quantity they are trying to add
+        
+        Cart cart = (Cart)session.getAttribute("cart");
+        int existingQuantity = cart.quantityOf(product.getProductID());
+        
         String quantityError = null;
-        if (quantity < 1 || quantity > product.getStock()) {
+        if ((quantity + existingQuantity) < 1 || (quantity + existingQuantity) > product.getStock()) {
             quantityError = "You can only add a quantity of at least 1.\nYou cannot add a larger quantity to cart than is in stock.";
             session.setAttribute("quantityError", quantityError);
         }
         
         if (quantityError == null) {
+            cart.addToCart(product.getProductID(), product.getName(), quantity);
             request.getRequestDispatcher("shop.jsp").forward(request, response);
-        } else {
+        } else {         
             request.getRequestDispatcher("product.jsp").forward(request, response);
         }         
     }
