@@ -15,10 +15,27 @@
     </head>
     <body>
         <h1>Order history for <%=customer.getName()%>:</h1>
+        <form action="OrderHistoryController" method="post">
+            <div>
+                <div>
+                    <p>Orders placed between</p>
+                    <input type="date" name="startDate"> 
+                    <p>and</p>
+                    <input type="date" name="endDate"> 
+                </div>
+                <div>
+                    <p>Order ID between</p>
+                    <input type="number" name="startID"> 
+                    <p>and</p>
+                    <input type="number" name="endID"> 
+                </div>
+            </div>
+            <input type="submit" class="button " value="Search">
+	</form>
         <% if (pastOrders == null) { %>
             <h2>An error occurred trying to retrieve past orders</h2>
         <% } else if (pastOrders.size() == 0) { %>
-            <h2>You have not placed any past orders</h2>
+            <h2>No orders found</h2>
         <% } else { %>
             <table border="1" cellspacing="3" cellpadding="3">
                 <tr>
