@@ -13,6 +13,18 @@
         <servlet-name>ViewPastOrderController</servlet-name>
         <servlet-class>uts.isd.controller.ViewPastOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShopController</servlet-name>
+        <servlet-class>uts.isd.controller.ShopController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProductController</servlet-name>
+        <servlet-class>uts.isd.controller.ViewProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartController</servlet-name>
+        <servlet-class>uts.isd.controller.AddToCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -24,6 +36,18 @@
     <servlet-mapping>
         <servlet-name>ViewPastOrderController</servlet-name>
         <url-pattern>/ViewPastOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShopController</servlet-name>
+        <url-pattern>/ShopController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductController</servlet-name>
+        <url-pattern>/ViewProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartController</servlet-name>
+        <url-pattern>/AddToCartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

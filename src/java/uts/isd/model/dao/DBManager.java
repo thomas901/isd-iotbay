@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.LinkedList;
 import uts.isd.model.Order;
 import uts.isd.model.OrderedItem;
+import uts.isd.model.Product;
 /* 
 * DBManager is the primary DAO class to interact with the database. 
 * Complete the existing methods of this classes to perform CRUD operations with the db.
@@ -68,5 +69,28 @@ public class DBManager {
             order.add(new OrderedItem(rs.getString(1), rs.getInt(2)));
         }
         return order;
+    }
+    
+    public LinkedList<Product> getAllProducts() throws SQLException {
+        //explicitly define order to use constructor in same order
+        String query = "select ProductID, Name, Stock, Description, CategoryID, Brand, Price from product";
+        ResultSet rs = st.executeQuery(query);
+        LinkedList<Product> allProducts = new LinkedList<>();
+        
+        while (rs.next()) {
+            allProducts.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getDouble(7)));
+        }
+        return allProducts;
+    }
+    
+    public Product getProduct(int productID) throws SQLException {
+        String query = "select ProductID, Name, Stock, Description, CategoryID, Brand, Price from product where productid = " + productID;
+        ResultSet rs = st.executeQuery(query);
+        Product product = null;
+        
+        while (rs.next()) { //can only have 1 row
+            product = new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getDouble(7));
+        }
+        return product;
     }
 }

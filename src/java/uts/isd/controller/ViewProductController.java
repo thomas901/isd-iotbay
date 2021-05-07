@@ -10,31 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.OrderedItem;
+import uts.isd.model.Product;
 import uts.isd.model.dao.DBManager;
 
-public class ViewPastOrderController extends HttpServlet {   
+public class ViewProductController extends HttpServlet {   
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //###check user is the same
-        
         //retrieve the current session
         HttpSession session = request.getSession();
 
         //retrieve the manager instance from session
         DBManager manager = (DBManager)session.getAttribute("manager");
         
-        LinkedList<OrderedItem> pastOrder;
+        int productID = Integer.parseInt(request.getParameter("productID"));
         
-        int orderID = Integer.parseInt(request.getParameter("orderID"));
-                
+        Product product;
+        
         try {
-            pastOrder = manager.getPastOrder(orderID);
-            session.setAttribute("pastOrder", pastOrder); 
+            product = manager.getProduct(productID);
+            session.setAttribute("product", product); 
         } catch (SQLException ex) {
-            Logger.getLogger(OrderHistoryController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("view_past_order.jsp").forward(request, response);  
+        request.getRequestDispatcher("product.jsp").forward(request, response);  
     }
 }
