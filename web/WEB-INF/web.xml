@@ -29,6 +29,18 @@
         <servlet-name>CheckoutController</servlet-name>
         <servlet-class>uts.isd.controller.CheckoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewSavedOrderController</servlet-name>
+        <servlet-class>uts.isd.controller.ViewSavedOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SavedOrdersController</servlet-name>
+        <servlet-class>uts.isd.controller.SavedOrdersController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSavedOrderController</servlet-name>
+        <servlet-class>uts.isd.controller.UpdateSavedOrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -56,6 +68,18 @@
     <servlet-mapping>
         <servlet-name>CheckoutController</servlet-name>
         <url-pattern>/CheckoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSavedOrderController</servlet-name>
+        <url-pattern>/ViewSavedOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SavedOrdersController</servlet-name>
+        <url-pattern>/SavedOrdersController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSavedOrderController</servlet-name>
+        <url-pattern>/UpdateSavedOrderController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

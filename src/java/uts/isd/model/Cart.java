@@ -40,7 +40,11 @@ public class Cart implements Serializable {
             cart.get(index).addToQuantity(quantity);
         }
     }
-
+    
+    public void clear() {
+        cart.clear();
+    }
+    
     public boolean isEmpty() {
         return cart.isEmpty();
     }

@@ -33,15 +33,11 @@ public class CheckoutController extends HttpServlet {
             double totalPrice = manager.priceCart(cart);
             manager.createOrder(orderID, customer == null ? null : customer.getCustomerID(), "Saved", totalPrice, false);
             manager.createOrderLines(cart, orderID);
-            //###working here
-            //add orderlines
-            //update product to reflect stock changes
-            //clear cart
-            //show saved order page
+            manager.reduceStockFromOrder(cart);
+            cart.clear();
+            request.getRequestDispatcher("ViewSavedOrderController?orderID=" + orderID).forward(request, response);     
         } catch (SQLException ex) {
             Logger.getLogger(OrderHistoryController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        request.getRequestDispatcher("checkout_order.jsp").forward(request, response);      
     }
 }

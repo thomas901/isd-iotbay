@@ -15,6 +15,7 @@
     <body>
         <h1>Hello World!</h1>
         <a class="button" href="OrderHistoryController">Order History</a><br>
+        <a class="button" href="SavedOrdersController">Saved Orders</a><br>
         <a class="button" href="ShopController">Back to shop</a>
     </body>
 </html>

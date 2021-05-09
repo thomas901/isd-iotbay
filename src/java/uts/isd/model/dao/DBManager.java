@@ -39,7 +39,7 @@ public class DBManager {
     
     public LinkedList<Order> getPastOrders(int customerID) throws SQLException {
         //explicitly define order to use constructor in same order
-        String query = "select OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FullfilledBy, AddressID, Address, PaymentID, Paid, DatePaid from \"ORDER\" where customerID = " + customerID; //order is keyword in SQL so needs to be 'stringed'
+        String query = "select OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FullfilledBy, AddressID, Address, PaymentID, Paid, DatePaid from \"ORDER\" where status <> 'Saved' and customerID = " + customerID; //order is keyword in SQL so needs to be 'stringed'
         ResultSet rs = st.executeQuery(query);
         LinkedList<Order> orders = new LinkedList<>();
         
@@ -51,7 +51,7 @@ public class DBManager {
     
     public LinkedList<Order> getPastOrders(int customerID, String startDate, String endDate, int startID, int endID) throws SQLException {
         //explicitly define order to use constructor in same order   
-        String query = "select OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FullfilledBy, AddressID, Address, PaymentID, Paid, DatePaid from \"ORDER\" where customerID = " + customerID + " and (orderID between " + startID + " and " + endID + ")" + " and (orderedDate between '" + startDate + "' and '" + endDate + "')"; //order is keyword in SQL so needs to be 'stringed'
+        String query = "select OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FullfilledBy, AddressID, Address, PaymentID, Paid, DatePaid from \"ORDER\" where status <> 'Saved' and customerID = " + customerID + " and (orderID between " + startID + " and " + endID + ")" + " and (orderedDate between '" + startDate + "' and '" + endDate + "')"; //order is keyword in SQL so needs to be 'stringed'
         ResultSet rs = st.executeQuery(query);
         LinkedList<Order> orders = new LinkedList<>();
         
@@ -124,6 +124,7 @@ public class DBManager {
     
     public void createOrder(int orderID, int customerID, String status, double totalPrice, boolean paid) throws SQLException  {
         //feature 3 is not yet concerned with payment and addresses; address by features 4 and 5
+        //###consider anonymous users
         String query = "insert into \"ORDER\" (OrderID, CustomerID, Status, TotalPrice, Paid) VALUES (" + orderID + ", " + customerID + ", '" + status + "', " + totalPrice + ", '" + paid + "')";
         executeUpdate(query);
     }
@@ -145,6 +146,58 @@ public class DBManager {
             query = "insert into orderlineitem (orderlineid, orderid, productid, quantity) values (" + nextID + ", " + orderID + ", " + item.getProductID() + ", " + item.getQuantity() + ")";
             executeUpdate(query);
             nextID++;
+        }
+    }
+    
+    public void reduceStockFromOrder(Cart cart) throws SQLException {
+        String query;
+        for (CartItem item : cart.getCart()) {
+            query = "update product set stock = stock - " + item.getQuantity() + " where productid = " + item.getProductID();
+            executeUpdate(query);
+        }
+    }
+    
+    public LinkedList<Order> getSavedOrders(int customerID) throws SQLException {
+        //explicitly define order to use constructor in same order
+        String query = "select OrderID, CustomerID, OrderedDate, Status, ShippedDate, TotalPrice, FullfilledBy, AddressID, Address, PaymentID, Paid, DatePaid from \"ORDER\" where status = 'Saved' and customerID = " + customerID; //order is keyword in SQL so needs to be 'stringed'
+        ResultSet rs = st.executeQuery(query);
+        LinkedList<Order> orders = new LinkedList<>();
+        
+        while (rs.next()) {
+            orders.add(new Order(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getString(4), rs.getDate(5), rs.getDouble(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getInt(10), rs.getBoolean(11), rs.getDate(12)));
+        }
+        return orders;
+    }
+    
+    public void submitOrder(int orderID, Date dateSubmitted) throws SQLException {
+        String query = "update \"ORDER\" set status = 'Submitted', ordereddate = '" + dateSubmitted.toString() + "' where orderid = " + orderID;
+        executeUpdate(query);
+    }
+    
+    public void saveOrder(int orderID, int paymentID, int addressID, String address) throws SQLException {
+        //an order either uses an addressid OR an ad-hoc address
+        String query = "update \"ORDER\" set paymentID = " + paymentID + ", " + ((addressID == -1) ? ("address = '" + address + "', addressid = null") : ("addressid = " + addressID + ", address = null")) + " where orderid = " + orderID;
+        executeUpdate(query);
+    }
+
+    public void cancelOrder(int orderID) throws SQLException {
+        String query = "update \"ORDER\" set status = 'Cancelled' where orderid = " + orderID;
+        executeUpdate(query);
+    }
+
+    public void increaseStockFromCancelledOrder(int orderID) throws SQLException {
+        LinkedList<CartItem> orderItems = new LinkedList<>();
+        String query = "select orderlineitem.productid, name, quantity from orderlineitem inner join product on product.productid = orderlineitem.productid where orderid = " + orderID;
+        ResultSet rs = st.executeQuery(query);
+        
+        while (rs.next()) {
+            orderItems.add(new CartItem(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+        }
+        //get all items from the order
+        
+        for (CartItem item : orderItems) {
+            query = "update product set stock = stock + " + item.getQuantity() + " where productid = " + item.getProductID();
+            executeUpdate(query);
         }
     }
 }
