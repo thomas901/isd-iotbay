@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import uts.isd.model.Customer;
-import uts.isd.model.Order;
-import uts.isd.model.User;
 import uts.isd.model.dao.DBManager;
 
 public class UpdateSavedOrderController extends HttpServlet {   

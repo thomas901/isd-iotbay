@@ -57,16 +57,16 @@
             <% for (Order order : pastOrders) { %>
                 <tr>
                     <td><%=order.getOrderID()%></td>
-                    <td><%=order.getOrderedDate()%></td>
+                    <td><%=order.getOrderedDate() == null ? "" : order.getOrderedDate()%></td>
                     <td><%=order.getStatus()%></td>
-                    <td><%=order.getShippedDate()%></td>
+                    <td><%=order.getShippedDate() == null ? "" : order.getShippedDate()%></td>
                     <td><%=order.getTotalPrice()%></td>
-                    <td><%=order.getFullfilledBy()%></td>
-                    <td><%=order.getAddressID()%></td>
-                    <td><%=order.getAddress()%></td>
-                    <td><%=order.getPaymentID()%></td>
+                    <td><%=order.getFullfilledBy() == 0 ? "" : order.getFullfilledBy()%></td>
+                    <td><%=order.getAddressID() == 0 ? "" : order.getAddressID()%></td>
+                    <td><%=order.getAddress() == null ? "" : order.getAddress()%></td>
+                    <td><%=order.getPaymentID() == 0 ? "" : order.getPaymentID()%></td>
                     <td><%=order.isPaid() ? "Yes" : "No"%></td>
-                    <td><%=order.getDatePaid()%></td>
+                    <td><%=order.getDatePaid() == null ? "" : order.getDatePaid()%></td>
                     <td><a href="ViewPastOrderController?orderID=<%=order.getOrderID()%>">View</a></td>
                 </tr>
             <% }  %>
