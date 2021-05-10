@@ -200,4 +200,42 @@ public class DBManager {
             executeUpdate(query);
         }
     }
+
+    public int getPaymentID(int orderID) throws SQLException {
+        int paymentID = 0;
+        String query = "select paymentID from \"ORDER\" where orderid = " + orderID;
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            try {//id may be null
+                paymentID = rs.getInt(1);
+            } catch (Exception e) {
+                paymentID = 0;
+            }
+        }
+        return paymentID;
+    }
+    
+    public int getAddressID(int orderID) throws SQLException {
+        int addressID = 0;
+        String query = "select addressID from \"ORDER\" where orderid = " + orderID;
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            try {//id may be null
+                addressID = rs.getInt(1);
+            } catch (Exception e) {
+                addressID = 0;
+            }
+        }
+        return addressID;
+    }
+    
+    public String getAddress(int orderID) throws SQLException {
+        String address = "";
+        String query = "select address from \"ORDER\" where orderid = " + orderID;
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            address = rs.getString(1);
+        }
+        return address;
+    }
 }

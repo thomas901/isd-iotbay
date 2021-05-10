@@ -26,12 +26,25 @@ public class ViewSavedOrderController extends HttpServlet {
         DBManager manager = (DBManager)session.getAttribute("manager");
         
         LinkedList<OrderedItem> savedOrder;
+        int paymentID;
+        int addressID;
+        String address;
         
         int orderID = Integer.parseInt(request.getParameter("orderID"));
                 
         try {
             savedOrder = manager.getPastOrder(orderID);
-            session.setAttribute("savedOrder", savedOrder); 
+            session.setAttribute("savedOrder", savedOrder);
+            
+            paymentID = manager.getPaymentID(orderID);
+            addressID = manager.getAddressID(orderID);
+            address = manager.getAddress(orderID);
+            
+            session.setAttribute("paymentID", paymentID);
+            session.setAttribute("addressID", addressID);
+            session.setAttribute("address", address);
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(ViewSavedOrderController.class.getName()).log(Level.SEVERE, null, ex);
         }

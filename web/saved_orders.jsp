@@ -38,7 +38,7 @@
                     <td><%=order.getTotalPrice()%></td>
                     <td><%=order.getPaymentID()%></td>
                     <td><%=order.getAddressID()%></td>
-                    <td><%=order.getAddress()%></td>
+                    <td><%=order.getAddress() == null ? "" : order.getAddress()%></td>
                     <td><a href="ViewSavedOrderController?orderID=<%=order.getOrderID()%>">Resume</a></td>
                 </tr>
             <% }  %>

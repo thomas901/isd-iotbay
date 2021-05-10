@@ -8,6 +8,10 @@
     //for testing
     Customer customer = (Customer)session.getAttribute("customer");
     LinkedList<OrderedItem> order = (LinkedList<OrderedItem>)session.getAttribute("savedOrder");
+    
+    int paymentID = (Integer)session.getAttribute("paymentID");
+    int addressID = (Integer)session.getAttribute("addressID");
+    String address = (String)session.getAttribute("address");
 %>
 <html>
     <head>
@@ -40,20 +44,20 @@
         <form action="UpdateSavedOrderController" method="post" id="updateForm">
             <p>Choose existing payment method (not yet implemented)</p>
             <select name="paymentID" form="updateForm">
-                <option value=100>100</option>
-                <option value=101>101</option>
-                <option value=102>102</option>
+                <option value=100<%=paymentID == 100 ? " selected=\"selected\"" : ""%>>100</option>
+                <option value=101<%=paymentID == 101 ? " selected=\"selected\"" : ""%>>101</option>
+                <option value=102<%=paymentID == 102 ? " selected=\"selected\"" : ""%>>102</option>
             </select><br>
             <button type="button">Add payment method (not yet implemented)</button>
             <p>Choose existing address (not yet implemented)</p>
             <select name="addressID" form="updateForm">
-                <option value=""></option>
-                <option value=100>100</option>
-                <option value=101>101</option>
-                <option value=102>102</option>
+                <option value=""<%=addressID == 0 ? " selected=\"selected\"" : ""%>></option>
+                <option value=100<%=addressID == 100 ? " selected=\"selected\"" : ""%>>100</option>
+                <option value=101<%=addressID == 101 ? " selected=\"selected\"" : ""%>>101</option>
+                <option value=102<%=addressID == 102 ? " selected=\"selected\"" : ""%>>102</option>
             </select>
             <p>Or enter new address</p>
-            <input type="textarea" name="address" rows="3"></input><br>
+            <input type="textarea" name="address" rows="3" value="<%=address == null ? "" : address%>"></input><br>
             <input type="hidden" name="orderID" value=<%=request.getParameter("orderID")%>>
             <input type="submit" class="button" name="submit" value="Submit order">
             <input type="submit" class="button" name="save" value="Save order">
