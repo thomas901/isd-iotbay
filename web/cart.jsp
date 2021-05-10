@@ -29,6 +29,7 @@
                 <tr>
                     <td><%=item.getName()%></td>
                     <td><%=item.getQuantity()%></td>
+                    <td><a href="RemoveFromCartController?productID=<%=item.getProductID()%>">Remove</a></td>
                 </tr>
             <% }  %>
             </table>

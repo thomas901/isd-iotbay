@@ -41,6 +41,10 @@
         <servlet-name>UpdateSavedOrderController</servlet-name>
         <servlet-class>uts.isd.controller.UpdateSavedOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveFromCartController</servlet-name>
+        <servlet-class>uts.isd.controller.RemoveFromCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
@@ -80,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>UpdateSavedOrderController</servlet-name>
         <url-pattern>/UpdateSavedOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromCartController</servlet-name>
+        <url-pattern>/RemoveFromCartController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

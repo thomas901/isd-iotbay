@@ -41,6 +41,13 @@ public class Cart implements Serializable {
         }
     }
     
+    public void removeFromCart(int productID) {
+        int index = getProductIndex(productID);
+        if (index != -1) {
+            cart.remove(index);
+        }
+    }
+    
     public void clear() {
         cart.clear();
     }
